@@ -12,8 +12,14 @@ ANN-implementation-DLCVNLP-demo
 conda activate --prefix ./envs python=3.7 -y
 ```
 
-## activate env
+### activate env
 
 ```bash
 conda activate ./envs
+```
+
+### create Environments in any folder
+
+```bash
+conda create --prefix ./envs python
 ```
