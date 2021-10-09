@@ -1,8 +1,11 @@
 from src.utils.common import read_config
 from src.utils.data_mgmt import get_data
-from src.utils.model import create_model, save_model
+from src.utils.model import create_model, save_model, save_plot
 import argparse
 import os
+import pandas as pd
+import matplotlib.pyplot as plt
+
 
 def training(config_path):
     config = read_config(config_path)
@@ -31,6 +34,7 @@ def training(config_path):
     model_name = config["artifacts"]["model_name"]
 
     save_model(model, model_name, model_dir_path)
+    save_plot(history, "mnist.png")
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
@@ -40,3 +44,4 @@ if __name__ == '__main__':
     parsed_args = args.parse_args()
 
     training(config_path=parsed_args.config)
+
