@@ -27,13 +27,12 @@ def save_model(model, model_name, model_dir):
     path_to_model = os.path.join(model_dir, unique_filename)
     model.save(path_to_model)
 
-def save_plot(history, file_name):
+def save_plot(history, plot, plot_dir_path):
     def _create_base_plot(history):
         pd.DataFrame(history.history).plot(figsize = (10, 7))
         plt.grid(True)
-        plot_dir = "plots"
-        os.makedirs(plot_dir, exist_ok=True)
-        plotPath = os.path.join(plot_dir, file_name)
+        unique_filename = get_unique_filename(plot)
+        plotPath = os.path.join(plot_dir_path, unique_filename)
         plt.savefig(plotPath)
         plt.show()
 

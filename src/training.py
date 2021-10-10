@@ -31,10 +31,17 @@ def training(config_path):
     model_dir_path = os.path.join(artifacts_dir, model_dir)
     os.makedirs(model_dir_path, exist_ok=True)
 
+    plots_dir = config["artifacts"]["plots_dir"]
+    plot_name = config["artifacts"]["plot"]
+
+    plot_dir_path = os.path.join(artifacts_dir, plots_dir)
+    os.makedirs(plot_dir_path, exist_ok=True)
+
     model_name = config["artifacts"]["model_name"]
 
+
     save_model(model, model_name, model_dir_path)
-    save_plot(history, "mnist.png")
+    save_plot(history, plot_name, plot_dir_path)
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
