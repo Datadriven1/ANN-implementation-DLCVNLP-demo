@@ -38,3 +38,19 @@ def save_plot(history, plot, plot_dir_path):
 
     _create_base_plot(history)
 
+def CALLBACKS(log_dir=None):
+    tensorboard_cb = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
+
+    ## EARLY_STOPPING_CALLBACK
+
+    early_stopping_cb = tf.keras.callbacks.EarlyStopping(patience=5, restore_best_weights=True)
+
+    ## Model Checkpointing callback
+
+    CKPT_path = "model_ckpt.h5"
+
+    checkpointing_cb = tf.keras.callbacks.ModelCheckpoint(CKPT_path, save_best_only=True)
+
+    CALLBACKS_LIST = [tensorboard_cb, early_stopping_cb, checkpointing_cb]
+    
+    return CALLBACKS_LIST
