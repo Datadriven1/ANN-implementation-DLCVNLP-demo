@@ -4,7 +4,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def create_model(LOSS_FUNCTION, OPTIMIZER, METRICS, NUM_CLASSES):
+def create_model(LOSS_FUNCTION, OPTIMIZER, METRICS, NUM_CLASSES) -> tf.keras.models.Model:
     LAYERS = [tf.keras.layers.Flatten(input_shape = [28,28], name = "inputLayer"),
           tf.keras.layers.Dense(300, activation = "relu", name = "hideenLayer1"),
           tf.keras.layers.Dense(100, activation = "relu", name = "hideenLayer2"),
@@ -38,11 +38,8 @@ def save_plot(history, plot, plot_dir_path):
 
     _create_base_plot(history)
 
-def CALLBACKS(log_dir=None):
-    tensorboard_cb = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
-
-    ## EARLY_STOPPING_CALLBACK
-
+def CALLBACKS():
+    
     early_stopping_cb = tf.keras.callbacks.EarlyStopping(patience=5, restore_best_weights=True)
 
     ## Model Checkpointing callback
@@ -51,6 +48,6 @@ def CALLBACKS(log_dir=None):
 
     checkpointing_cb = tf.keras.callbacks.ModelCheckpoint(CKPT_path, save_best_only=True)
 
-    CALLBACKS_LIST = [tensorboard_cb, early_stopping_cb, checkpointing_cb]
+    CALLBACKS_LIST = [early_stopping_cb, checkpointing_cb]
     
     return CALLBACKS_LIST

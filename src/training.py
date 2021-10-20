@@ -23,7 +23,7 @@ def training(config_path):
     EPOCHS = config["params"]["epochs"]
     VALIDATION = (X_valid, y_valid)
 
-    history = model.fit(X_train, y_train, epochs = EPOCHS, validation_data= VALIDATION, callbacks=CALLBACKS)
+    history = model.fit(X_train, y_train, epochs = EPOCHS, validation_data= VALIDATION, callbacks=[CALLBACKS])
 
     artifacts_dir = config["artifacts"]["artifacts_dir"]
     model_dir = config["artifacts"]["model_dir"]
