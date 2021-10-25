@@ -5,4 +5,3 @@ def read_config(config_path):
         content = yaml.safe_load(config_file)
 
     return content
-    
